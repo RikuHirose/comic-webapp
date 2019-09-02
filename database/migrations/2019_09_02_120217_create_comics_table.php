@@ -16,6 +16,8 @@ class CreateComicsTable extends Migration
         Schema::create('comics', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->string('img_url')->nullable();
+
             $table->string('comic_name')->nullable();
             $table->string('writer_name')->nullable();
             $table->string('publisher')->nullable();
