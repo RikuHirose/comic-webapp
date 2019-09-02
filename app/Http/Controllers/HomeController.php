@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /**
+        ** TODO: url=> / のtop page
+        **/
+
         return view('home');
     }
 }
