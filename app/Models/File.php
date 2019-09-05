@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
 
-    protected $table = 'file';
+    protected $table = 'files';
 
     protected $fillable = [
         'url',
@@ -16,6 +16,7 @@ class File extends Model
         's3_key',
         's3_bucket',
         's3_region',
+        's3_extension',
     ];
 
 
