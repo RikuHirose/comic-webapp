@@ -7,21 +7,29 @@ use App\Http\Requests\ComicRequest;
 
 use App\Repositories\ComicRepositoryInterface;
 use App\Models\Comic;
+use App\Services\ComicServiceInterface;
+
+
 
 class HomeController extends Controller
 {
 
     protected $comicRepository;
+    protected $comicService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        ComicRepositoryInterface $comicRepository
+        ComicRepositoryInterface $comicRepository,
+        ComicServiceInterface $comicService
     )
     {
         $this->comicRepository   = $comicRepository;
+        $this->comicService    = $comicService;
+
     }
 
     /**
@@ -41,12 +49,7 @@ class HomeController extends Controller
         ** TODO: url=> / のtop page
         **/
 
-        if($request->search){
-            $input = $request->search;
-            $allcomics = $this->comicRepository->searchComics($input);
-        }else{
-            $allcomics = $this->comicRepository->all();
-        }
+        $allcomics = $this->comicService->getComicsBySearch($request->search);
 
         return view('home',[
             'allcomics' => $allcomics,
