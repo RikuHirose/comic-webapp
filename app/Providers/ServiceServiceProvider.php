@@ -26,5 +26,10 @@ class ServiceServiceProvider extends ServiceProvider
             \App\Services\UserServiceInterface::class,
             \App\Services\Production\UserService::class
         );
+
+        $this->app->singleton(
+            \App\Services\ComicServiceInterface::class,
+            \App\Services\Production\ComicService::class
+        );
     }
 }
