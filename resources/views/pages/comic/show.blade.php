@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{ Breadcrumbs::render('show', $comic) }}
+{{ Breadcrumbs::render('writer', $comic) }}
 
 <div class="container-fluid">
   <img src="{{ $comic->img_url }}" alt="" class="img-fluid">

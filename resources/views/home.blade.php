@@ -16,12 +16,9 @@
         </form>
 
             <div class="card text-center search_result">
-                <div class="card-header">
-                    <b>Users</b>
-                </div>
-                    @isset($request->search)
-                        <p>{{ $search_result }}</p>
-                    @endisset
+                @isset($request->search)
+                    <p>{{ $search_result }}</p>
+                @endisset
             </div>
                 @foreach($allcomics as $comic)
                 <div class="card">
