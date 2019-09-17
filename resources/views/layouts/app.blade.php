@@ -15,10 +15,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/show.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -41,6 +43,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('comics.index') }}">漫画一覧</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -74,7 +79,13 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
             @yield('content')
+                    </div>
+                </div>
+             </div>
         </main>
     </div>
 </body>
