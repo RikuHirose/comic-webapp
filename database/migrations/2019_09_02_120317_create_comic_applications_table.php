@@ -15,8 +15,8 @@ class CreateComicApplicationsTable extends Migration
     {
         Schema::create('comic_applications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('comic_id')->unique()->unsigned()->index()->nullable();
-            $table->bigInteger('application_id')->unique()->unsigned()->index();
+            $table->bigInteger('comic_id')->unsigned()->index()->nullable();
+            $table->bigInteger('application_id')->unsigned()->index();
 
             $table->foreign('comic_id')->references('id')->on('comics')->onDelete('cascade');
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');

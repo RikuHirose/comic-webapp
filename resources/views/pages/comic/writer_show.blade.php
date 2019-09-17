@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-{{ Breadcrumbs::render('index') }}
 
+{{ Breadcrumbs::render('writer', $comics) }}
 
         <form class="comic_search" id="company-search-form" action="/comics" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="✓">
@@ -23,7 +23,7 @@
                         <p>{{ $search_result }}</p>
                     @endisset
             </div>
-                @foreach($allcomics as $comic)
+                @foreach($comics as $comic)
                 <a href="{{ route('comics.show', $comic->comic_name) }}">
                 <div class="card">
                     <div class="card-header">Comic

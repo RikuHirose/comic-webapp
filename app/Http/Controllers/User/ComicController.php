@@ -6,16 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ComicRepositoryInterface;
 use App\Models\Comic;
+use App\Services\ComicServiceInterface;
+
 
 class ComicController extends Controller
 {
-    protected $ComicRepository;
+    protected $comicRepository;
+    protected $comicService;
 
     public function __construct(
-        ComicRepositoryInterface $comicRepository
+        ComicRepositoryInterface $comicRepository,
+        ComicServiceInterface $comicService
+
     )
     {
-        $this->comicRepository = $comicRepository;
+        $this->comicRepository   = $comicRepository;
+        $this->comicService    = $comicService;
     }
 
     /**
@@ -23,21 +29,19 @@ class ComicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        \Log::info('Display a listing of the companies');
+        \Log::info('Display a listing of the comic');
 
 
         /**
         ** TODO: comicRepository作ってpages.comic.indexにViewを作ってください
         **/
+        $allcomics = $this->comicService->getComicsBySearch($request->search);
 
-        $companies = $this->companyRepository->getBlankModel()->all();
-        $companies->load('review', 'like', 'companyIndustry.industry');
-
-        return view('pages.company.index',
+        return view('pages.comic.index',
             [
-                'companies' => $companies
+                'allcomics' => $allcomics
             ]
         );
     }
@@ -48,19 +52,27 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show($comic_name)
     {
         /**
         ** TODO: comicRepository作ってpages.comic.indexにViewを作ってください
         **/
 
-        $company->load('review', 'like', 'companyIndustry.industry');
-
-        \Log::info('Display a the specified company for company: '.$company['id']);
-
-        return view('pages.company.show',
+        $comic = $this->comicRepository->firstComic($comic_name);
+        return view('pages.comic.show',
             [
-                'company' => $company
+                'comic' => $comic
+            ]
+        );
+    }
+
+    public function writer($writer_name)
+    {
+
+        $comics = $this->comicRepository->getComicBywritername($writer_name);
+        return view('pages.comic.writer_show',
+            [
+                'comics' => $comics
             ]
         );
     }
@@ -122,4 +134,6 @@ class ComicController extends Controller
     {
         //
     }
+
+
 }

@@ -24,12 +24,12 @@ class Comic extends Model
 
   // Relations
   public function review(){
-    $this->hasMany(\App\Models\Review::class, 'comic_id', 'id');
+    return $this->hasMany(\App\Models\Review::class, 'comic_id', 'id');
   }
 
-  public function comicApplications()
+  public function applications()
   {
-    $this->belongsToMany(\App\Models\Application::class, 'comic_applications', 'comic_id', 'application_id');
+    return $this->belongsToMany(\App\Models\Application::class, 'comic_applications', 'comic_id', 'application_id');
   }
 
 }

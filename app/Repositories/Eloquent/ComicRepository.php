@@ -62,6 +62,23 @@ class ComicRepository implements ComicRepositoryInterface
         return $comic_id;
     }
 
+    public function firstComic($comic_name){
+        $comic = $this->comic
+        ->where('comic_name', $comic_name)
+        ->first();
+
+        return $comic;
+    }
+
+    public function getComicBywritername($writer_name){
+        $comic = $this->comic
+        ->where('writer_name', $writer_name)
+        ->get();
+        
+        return $comic;
+    }
+
+
     public function getPopularcomics(){
         $comics = $this->comic
         ->take(10)
