@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        <form class="comic_search" id="company-search-form" action="/" accept-charset="UTF-8" method="get">
+{{ Breadcrumbs::render('top_page') }}
+
+        <form class="comic_search" id="omecompany-search-form" action="/" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="✓">
                 <div class="form-group row py-3">
                     <div class="col-9 pr-0">
@@ -15,25 +14,21 @@
                     </div>
                 </div>
         </form>
+
             <div class="card text-center search_result">
-                <div class="card-header">
-                    <b>Users</b>
-                </div>
-                    @isset($request->search)
-                        <p>{{ $search_result }}</p>
-                    @endisset
+                @isset($request->search)
+                    <p>{{ $search_result }}</p>
+                @endisset
             </div>
                 @foreach($allcomics as $comic)
                 <div class="card">
                     <div class="card-header">Comic
                     </div>
                         <div class="card-body">
+                            <img src="{{ $comic->img_url }}" alt="" class="img-fluid">
                             <h5>Comic:{{ $comic->comic_name }}</h5>
                             <h5>Author:{{ $comic->writer_name }}</h5>
                         </div>
                 </div>
                 @endforeach
-        </div>
-    </div>
-</div>
 @endsection

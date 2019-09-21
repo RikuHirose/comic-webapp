@@ -23,7 +23,7 @@ class CreateComicsTable extends Migration
             $table->string('publisher')->nullable();
             $table->string('publication_magazine')->nullable();
 
-            $table->integer('publish_number')->nullable();
+            $table->string('publish_number')->nullable();
             $table->string('publish_status')->nullable();
             $table->string('duration')->nullable();
             $table->string('amazon_url')->nullable();

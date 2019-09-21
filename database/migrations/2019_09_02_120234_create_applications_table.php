@@ -17,6 +17,7 @@ class CreateApplicationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('url')->nullable();
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
