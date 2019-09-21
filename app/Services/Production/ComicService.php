@@ -19,8 +19,8 @@ class ComicService implements ComicServiceInterface
   public function getComicsBySearch($input){
      if($input){
        $allcomics = $this->comicRepository->searchComics($input);
-     }else{
-       $allcomics = $this->comicRepository->all();
+     } else {
+       $allcomics = $this->comicRepository->getBlankModel()->paginate();
      }
      return $allcomics;
    }

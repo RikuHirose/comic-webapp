@@ -32,25 +32,20 @@
     @foreach($comics as $comic)
         <div class="row mb-3">
             <div class="col-md-3">
-                <a href="http://localhost:8000/restaurants/2">
+                <a href="{{ route('comics.show', $comic->comic_name) }}">
                     <img class="mx-2" height="100" src="{{ $comic->img_url }}" style="max-height: 200px;">
                 </a>
             </div>
             <div class="col-md-9 mt-2 mb-2">
                 <div class="">
                     <h2 class="">
-                        <a href="http://localhost:8000/restaurants/2" class="c-res-index-card__ttl--link">{{ $comic->comic_name }}</a>
+                        <a href="{{ route('comics.show', $comic->comic_name) }}" class="c-res-index-card__ttl--link">{{ $comic->comic_name }}</a>
                     </h2>
                 </div>
                 <div>
                     <div class="row">
                         <div class="col-md-12">
                             @include('components.comic.star', ['comic' => $comic])
-                            <span class="fa-star-yellow star-icon"></span>
-                            <span class="fa-star-yellow star-icon"></span>
-                            <span class="fa-star-yellow star-icon"></span>
-                            <span class="fa-star-yellow star-icon"></span>
-                            <span class="fa-star-gray star-icon"></span>
                             <span class="m-tag">
                             LINEマンガ
                             </span>

@@ -21,4 +21,6 @@
     </div> -->
     <!-- comic_list -->
     @include('components.comic.list', ['title' => '無料', 'comics' => $comics])
+
+    {{ $comics->links('vendor.pagination.default') }}
 @endsection

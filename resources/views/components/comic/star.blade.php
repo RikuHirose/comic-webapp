@@ -1,5 +1,6 @@
 @php
-  $white_stars = 5 - $comic->rating;
+
+  $white_stars = 5 - intval($comic->rating);
 @endphp
 
 @for ($i = 1; $i <= $comic->rating; $i++)

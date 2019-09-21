@@ -33,15 +33,11 @@ class ComicController extends Controller
     {
         \Log::info('Display a listing of the comic');
 
-
-        /**
-        ** TODO: comicRepository作ってpages.comic.indexにViewを作ってください
-        **/
-        $allcomics = $this->comicService->getComicsBySearch($request->search);
+        $comics = $this->comicService->getComicsBySearch($request->search);
 
         return view('pages.comic.index',
             [
-                'comics' => $allcomics
+                'comics' => $comics
             ]
         );
     }

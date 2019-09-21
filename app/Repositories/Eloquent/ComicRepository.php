@@ -44,7 +44,7 @@ class ComicRepository implements ComicRepositoryInterface
         $comics = $this->comic
         ->where('comic_name', 'like', "%{$input}%")
         ->orWhere('writer_name', 'like', "%{$input}%")
-        ->get();
+        ->paginate();
 
         return $comics;
     }
@@ -74,7 +74,7 @@ class ComicRepository implements ComicRepositoryInterface
         $comic = $this->comic
         ->where('writer_name', $writer_name)
         ->get();
-        
+
         return $comic;
     }
 
