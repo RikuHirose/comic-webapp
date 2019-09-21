@@ -10914,8 +10914,43 @@ input[type=button]::focus {
  * ========================================================================= */
 
 /* ============================================================================
- * Layout
+ * Structure
  * ========================================================================= */
+
+#header {
+  width: 100%;
+  border-bottom: 2px solid #d5d5d5;
+}
+
+#header .s-header--wrap {
+  padding: 22px 0;
+}
+
+#header .s-header-logo__sizing {
+  height: 27px;
+  width: 133px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#header .s-header-list--link {
+  color: #333333;
+  text-decoration: none;
+}
+
+#header .s-header-list__avatar {
+  border-radius: 30px;
+  height: 30px;
+}
+
+#header .s-header-list__dropdown__nav-lists li {
+  display: block;
+  padding: 6px 15px;
+}
+
+#header .s-header-list__dropdown__nav-lists li a {
+  color: #4a4a4b;
+}
 
 /* ============================================================================
  * components

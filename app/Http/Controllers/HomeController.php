@@ -49,10 +49,10 @@ class HomeController extends Controller
         ** TODO: url=> / のtop page
         **/
 
-        $allcomics = $this->comicService->getComicsBySearch($request->search);
+        $comics = $this->comicService->getComicsBySearch($request->search);
 
         return view('home',[
-            'allcomics' => $allcomics,
+            'comics' => $comics,
         ]);
     }
 }
