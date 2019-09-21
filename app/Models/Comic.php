@@ -18,9 +18,13 @@ class Comic extends Model
         'publish_number',
         'publish_status',
         'duration',
+        'rating',
         'amazon_url',
     ];
 
+    protected $casts = [
+      'rating' => 'numeric',
+    ];
 
   // Relations
   public function review(){

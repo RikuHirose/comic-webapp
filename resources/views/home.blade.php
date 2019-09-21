@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-{{ Breadcrumbs::render('top_page') }}
-
-        <form class="comic_search" id="omecompany-search-form" action="/" accept-charset="UTF-8" method="get">
+    <div class="{{ Config::get('cssConstants.frame') }}">
+        <form class="comic_search" id="company-search-form" action="/comics" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="✓">
                 <div class="form-group row py-3">
                     <div class="col-9 pr-0">
@@ -14,21 +13,14 @@
                     </div>
                 </div>
         </form>
+    </div>
+    <!-- <div class="card text-center search_result">
+        @isset($request->search)
+            <p>{{ $search_result }}</p>
+        @endisset
+    </div> -->
+    <!-- comic_list -->
+    @include('components.comic.list', ['title' => '無料', 'comics' => $comics])
 
-            <div class="card text-center search_result">
-                @isset($request->search)
-                    <p>{{ $search_result }}</p>
-                @endisset
-            </div>
-                @foreach($allcomics as $comic)
-                <div class="card">
-                    <div class="card-header">Comic
-                    </div>
-                        <div class="card-body">
-                            <img src="{{ $comic->img_url }}" alt="" class="img-fluid">
-                            <h5>Comic:{{ $comic->comic_name }}</h5>
-                            <h5>Author:{{ $comic->writer_name }}</h5>
-                        </div>
-                </div>
-                @endforeach
+    {{ $comics->links('vendor.pagination.default') }}
 @endsection

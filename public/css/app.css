@@ -10914,8 +10914,43 @@ input[type=button]::focus {
  * ========================================================================= */
 
 /* ============================================================================
- * Layout
+ * Structure
  * ========================================================================= */
+
+#header {
+  width: 100%;
+  border-bottom: 2px solid #d5d5d5;
+}
+
+#header .s-header--wrap {
+  padding: 22px 0;
+}
+
+#header .s-header-logo__sizing {
+  height: 27px;
+  width: 133px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#header .s-header-list--link {
+  color: #333333;
+  text-decoration: none;
+}
+
+#header .s-header-list__avatar {
+  border-radius: 30px;
+  height: 30px;
+}
+
+#header .s-header-list__dropdown__nav-lists li {
+  display: block;
+  padding: 6px 15px;
+}
+
+#header .s-header-list__dropdown__nav-lists li a {
+  color: #4a4a4b;
+}
 
 /* ============================================================================
  * components
@@ -11265,6 +11300,44 @@ a.m-btn {
   font-family: "Font Awesome 5 Free";
   content: "\F4DA";
   font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
+ * tag
+ * ------------------------------------------------------------------------- */
+
+.m-tag {
+  margin-left: 8px;
+  display: inline-block;
+  font-family: NotoSansCJKjp;
+  font-size: 10px;
+  line-height: 1.6;
+  height: 16px;
+  border-radius: 2px;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 1.8px;
+  padding: 0 8px 0 8px;
+  background-color: #796bae;
+}
+
+.m-tag__situation {
+  background-color: #F78901;
+}
+
+/* ----------------------------------------------------------------------------
+ * breadcrumb
+ * ------------------------------------------------------------------------- */
+
+.m-breadcrumb ul {
+  color: #555555;
+  padding-top: 8px;
+  margin-bottom: 10px;
+}
+
+.m-breadcrumb li {
+  display: inline-block;
+  font-size: 11px;
 }
 
 /* ============================================================================
