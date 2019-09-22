@@ -45,14 +45,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        /**
-        ** TODO: url=> / のtop page
-        **/
-
-        $comics = $this->comicService->getComicsBySearch($request->search);
+        $comics       = $this->comicRepository->getBlankModel()->take(6)->get();
+        $top5Comics   = $this->comicRepository->getComicsByRanking();
+        $bottomComics = $this->comicRepository->getBlankModel()->take(30)->get();
 
         return view('home',[
-            'comics' => $comics,
+            'comics'       => $comics,
+            'top5Comics'   => $top5Comics,
+            'bottomComics' => $bottomComics,
         ]);
     }
 }

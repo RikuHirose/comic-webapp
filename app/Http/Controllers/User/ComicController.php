@@ -50,14 +50,17 @@ class ComicController extends Controller
      */
     public function show($comic_name)
     {
-        /**
-        ** TODO: comicRepository作ってpages.comic.indexにViewを作ってください
-        **/
+        $comic        = $this->comicRepository->firstComic($comic_name);
+        $witersComics = $this->comicRepository->getBywriterNameAndWhereNotInComicName($comic_name, $comic->writer_name);
+        $top5Comics   = $this->comicRepository->getComicsByRanking();
+        $bottomComics = $this->comicRepository->getBlankModel()->take(30)->get();
 
-        $comic = $this->comicRepository->firstComic($comic_name);
         return view('pages.comic.show',
             [
-                'comic' => $comic
+                'comic'        => $comic,
+                'witersComics' => $witersComics,
+                'top5Comics'   => $top5Comics,
+                'bottomComics' => $bottomComics,
             ]
         );
     }
@@ -65,7 +68,7 @@ class ComicController extends Controller
     public function writer($writer_name)
     {
 
-        $comics = $this->comicRepository->getComicBywritername($writer_name);
+        $comics = $this->comicRepository->getBywriterName($writer_name);
         return view('pages.comic.writer_show',
             [
                 'comics' => $comics

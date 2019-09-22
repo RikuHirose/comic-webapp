@@ -7,7 +7,7 @@
         <small class="text-muted">ss</small>
     </div>
     <!-- comic_search -->
-    <div class="{{ Config::get('cssConstants.frame') }}">
+    <div class="{{ Config::get('classConstants.frame') }}">
         <form class="comic_search" id="company-search-form" action="{{ route('comics.index') }}" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="✓">
                 <div class="form-group row">

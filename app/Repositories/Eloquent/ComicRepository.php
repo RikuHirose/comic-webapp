@@ -37,10 +37,6 @@ class ComicRepository implements ComicRepositoryInterface
 
     public function searchComics($input)
     {
-        // $comic_name = $input['comic_name'];
-        // $writer_name = $input['writer_name'];
-
-
         $comics = $this->comic
         ->where('comic_name', 'like', "%{$input}%")
         ->orWhere('writer_name', 'like', "%{$input}%")
@@ -70,7 +66,8 @@ class ComicRepository implements ComicRepositoryInterface
         return $comic;
     }
 
-    public function getComicBywritername($writer_name){
+    public function getBywriterName($writer_name)
+    {
         $comic = $this->comic
         ->where('writer_name', $writer_name)
         ->get();
@@ -78,10 +75,29 @@ class ComicRepository implements ComicRepositoryInterface
         return $comic;
     }
 
+    public function getBywriterNameAndWhereNotInComicName($comic_name, $writer_name)
+    {
+        $comic = $this->comic
+        ->where('writer_name', $writer_name)
+        ->whereNotIn('comic_name', [$comic_name])
+        ->get();
 
-    public function getPopularcomics(){
+        return $comic;
+    }
+
+    public function getPopularcomics()
+    {
         $comics = $this->comic
         ->take(10)
+        ->get();
+
+        return $comics;
+    }
+
+    public function getComicsByRanking()
+    {
+        $comics = $this->comic
+        ->take(5)
         ->get();
 
         return $comics;

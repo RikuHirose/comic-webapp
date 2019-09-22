@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="{{ Config::get('cssConstants.frame') }}">
+    <div class="{{ Config::get('classConstants.frame') }}">
         <form class="comic_search" id="company-search-form" action="/comics" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="✓">
                 <div class="form-group row py-3">
@@ -14,13 +14,17 @@
                 </div>
         </form>
     </div>
-    <!-- <div class="card text-center search_result">
-        @isset($request->search)
-            <p>{{ $search_result }}</p>
-        @endisset
-    </div> -->
-    <!-- comic_list -->
-    @include('components.comic.list', ['title' => '無料', 'comics' => $comics])
 
-    {{ $comics->links('vendor.pagination.default') }}
+    <!-- comic_list -->
+    <div class="{{ Config::get('classConstants.frame') }}">
+        @include('components.comic.list', ['title' => '無料', 'comics' => $comics])
+    </div>
+    <!-- top5Comics -->
+    <div class="{{ Config::get('classConstants.frame') }}">
+        @include('components.comic.ranking', ['isRanking' => true, 'title' => '人気ランキング', 'comics' => $top5Comics])
+    </div>
+    <!-- bottomComics -->
+    <div class="{{ Config::get('classConstants.frame') }}">
+        @include('components.comic.list', ['title' => 'あれもこれも！待てば無料！', 'comics' => $bottomComics])
+    </div>
 @endsection

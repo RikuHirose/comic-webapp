@@ -18,7 +18,7 @@ Breadcrumbs::for('writer', function ($trail, $comic) {
 });
 
 // top > writer_name > comic_name
-Breadcrumbs::for('show', function ($trail, $comic) {
-  $trail->parent('writer');
+Breadcrumbs::for('comics.show', function ($trail, $comic) {
+  $trail->parent('writer', $comic);
   $trail->push($comic->comic_name, route('comics.show',$comic->comic_name));
 });
