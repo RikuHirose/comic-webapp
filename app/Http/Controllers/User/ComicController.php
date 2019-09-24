@@ -55,6 +55,11 @@ class ComicController extends Controller
         $top5Comics   = $this->comicRepository->getComicsByRanking();
         $bottomComics = $this->comicRepository->getBlankModel()->take(30)->get();
 
+        $comic->load('applications');
+        $witersComics->load('applications');
+        $top5Comics->load('applications');
+        $bottomComics->load('applications');
+
         return view('pages.comic.show',
             [
                 'comic'        => $comic,

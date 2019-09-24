@@ -24,33 +24,17 @@
       </p>
       <p class="text-right mb-0 align-bottom justify-content-end">
         <a class="btn btn-light" href="">
-          <i class="fa fa-amazon"></i> Amazonで買う
+          <i class="fa-amazon"></i> Amazonで買う
         </a>
       </p>
     </div>
   </div>
 </div>
 
-<div class="container-fluid">
-  @foreach($comic->applications as $application)
-        <div class="media">
-        <img class="mr-3 rounded" width="50" src="">
-        <div class="media-body align-self-center">
-        <div class="row">
-        <div class="col-7">
-        <h2 class="mt-0 mb-1">{{ $application->name }}</h2>
-        <span class="text-muted"></span>
-        </div>
-        <div class="col text-center align-self-center">
-        <a class="btn btn-primary btn-sm" href="{{ $application->url }}">今すぐ読む</a>
-        </div>
-        </div>
-        </div>
-        </div>
-
-  @endforeach
-
-
+<!-- comicApplications -->
+<div class="{{ Config::get('classConstants.frame') }}">
+    @include('components.comic.applications', ['title' => $comic->comic_name.'無料で読めるアプリ
+', 'applications' => $comic->applications])
 </div>
 
 <div class="{{ Config::get('classConstants.frame') }}">

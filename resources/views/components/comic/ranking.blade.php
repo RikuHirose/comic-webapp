@@ -26,7 +26,9 @@
               </div>
               @include('components.comic.star', ['comic' => $comic])
               <span class="m-tag">
-                LINEマンガ
+                @if(!is_null($comic->applications))
+                  {{ $comic->applications[0]->name }}
+                @endif
               </span>
             </div>
           </div>
