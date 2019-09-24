@@ -28,6 +28,13 @@ class ApplicationRepository implements ApplicationRepositoryInterface
       return $application;
     }
 
+    public function firstOrCreate($input)
+    {
+      $application = $this->application->firstOrCreate($input);
+
+      return $application;
+    }
+
     public function all()
     {
       $applications = $this->application->all();
@@ -35,6 +42,11 @@ class ApplicationRepository implements ApplicationRepositoryInterface
       return $applications;
     }
 
-
+    public function findByName($name)
+    {
+        return $this->application
+        ->where('name', $name)
+        ->first();
+    }
 
 }

@@ -35,6 +35,13 @@ class ComicRepository implements ComicRepositoryInterface
       return $comics;
     }
 
+    public function findByName($name)
+    {
+        return $this->comic
+        ->where('comic_name', $name)
+        ->first();
+    }
+
     public function searchComics($input)
     {
         $comics = $this->comic

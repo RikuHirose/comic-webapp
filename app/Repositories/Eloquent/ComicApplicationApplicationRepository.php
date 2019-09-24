@@ -28,6 +28,13 @@ class ComicApplicationRepository implements ComicApplicationRepositoryInterface
       return $comicApplication;
     }
 
+    public function firstOrCreate($input)
+    {
+      $comicApplication = $this->comicApplication->firstOrCreate($input);
+
+      return $comicApplication;
+    }
+
     public function all()
     {
       $comicApplications = $this->comicApplication->all();

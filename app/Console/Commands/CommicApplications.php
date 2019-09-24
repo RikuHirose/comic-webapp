@@ -60,8 +60,24 @@ class CommicApplications extends Command
         // comic、applicationをdbに入れてsql検索した方が楽?
         $comics       = $this->comicRepository->all();
         $applications = $this->applicationRepository->all();
-        // $comic_applications = $this->comicApplicationRepository->all();
 
-        dd($comics);
+        $csvComicApplications = \CsvHelper::csvToArray("/Users/rikuparkour1996/www/comic-webapp/database/seeds/Data/comicApplications.csv");
+
+        foreach ($csvComicApplications as $key => $csvComicApplication) {
+            $comicName       = $csvComicApplication[0];
+            $applicationName = $csvComicApplication[1];
+
+            $comic       = $this->comicRepository->findByName($comicName);
+            $application = $this->applicationRepository->findByName($applicationName);
+
+            if(!is_null($comic) && !is_null($application)) {
+                echo $comic->comic_name."と".$application->name."のcommicApplicationを作成中...";
+
+                $this->comicApplicationRepository->firstOrCreate([
+                    'comic_id'       => $comic->id,
+                    'application_id' => $application->id,
+                ]);
+            }
+        }
     }
 }
