@@ -178,6 +178,7 @@ return [
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\ServiceServiceProvider::class,
         App\Providers\ViewCreatorServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
 
     ],
 
@@ -230,6 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        // Helper
+        'CsvHelper' => \App\Facades\Helpers\CsvHelper::class,
 
     ],
 

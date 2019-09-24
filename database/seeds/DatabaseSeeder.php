@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
       // $this->call(Comic_ApplicationsTableSeeder::class);
 
       // $this->call(ComicFromCsvSeeder::class);
+      // $this->call(ApplicationFromCsvSeeder::class);
     }
 }

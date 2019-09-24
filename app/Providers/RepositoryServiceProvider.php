@@ -18,6 +18,24 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\UserRepositoryInterface::class,
             \App\Repositories\Eloquent\UserRepository::class
         );
+
+        // Comic
+        $this->app->bind(
+            \App\Repositories\ComicRepositoryInterface::class,
+            \App\Repositories\Eloquent\ComicRepository::class
+        );
+
+        // ComicApplication
+        $this->app->bind(
+            \App\Repositories\ComicApplicationRepositoryInterface::class,
+            \App\Repositories\Eloquent\ComicApplicationRepository::class
+        );
+
+        // Application
+        $this->app->bind(
+            \App\Repositories\ApplicationRepositoryInterface::class,
+            \App\Repositories\Eloquent\ApplicationRepository::class
+        );
     }
 
     /**
