@@ -1,8 +1,5 @@
 <div id="search-form" class="panel-primary panel" style="border: 0.5px solid rgb(51, 122, 183);">
-  <div class="panel-heading" style="color: #fff; background-color: #337ab7;border-color: #337ab7; padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;">
+  <div class="panel-heading" style="color: #fff; background-color: #337ab7;border-color: #337ab7; padding: 10px 15px;border-bottom: 1px solid transparent;border-top-right-radius: 3px;border-top-left-radius: 3px;">
     <h3 class="panel-title" style="margin-top: 0;margin-bottom: 0;font-size: 16px;color: inherit;">検索項目</h3>
   </div>
   <div class="panel-body mt-3" style="padding: 0 15px;">
