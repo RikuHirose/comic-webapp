@@ -1,6 +1,10 @@
 <div class="d-flex justify-content-between">
   <h3 class="h5 font-weight-bold mb-3">{{ $title }}</h3>
-  <a class="text-muted" href="/comics">もっと見る＞</a>
+  @if($isWriters)
+    <a class="text-muted" href="{{ route('comics.index', ['query' => $comic->writer_name]) }}">もっと見る</a>
+  @else
+    <a class="text-muted" href="/comics">もっと見る</a>
+  @endif
 </div>
 
 <ul class="list-untitled pl-0 mb-0">
@@ -27,7 +31,9 @@
               @include('components.comic.star', ['comic' => $comic])
               <span class="m-tag">
                 @if(!is_null($comic->applications))
-                  {{ $comic->applications[0]->name }}
+                  @foreach($comic->applications as $application)
+                    {{ $application->name }}
+                  @endforeach
                 @endif
               </span>
             </div>

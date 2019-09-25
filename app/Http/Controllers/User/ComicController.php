@@ -32,12 +32,13 @@ class ComicController extends Controller
     public function index(Request $request)
     {
         \Log::info('Display a listing of the comic');
-
-        $comics = $this->comicService->getComicsBySearch($request->search);
+        $query  = $request->get('query');
+        $comics = $this->comicService->getComicsBySearch($query);
 
         return view('pages.comic.index',
             [
-                'comics' => $comics
+                'comics'  => $comics,
+                'query'   => is_null($query) ? null : $query
             ]
         );
     }
@@ -53,7 +54,7 @@ class ComicController extends Controller
         $comic        = $this->comicRepository->firstComic($comic_name);
         $witersComics = $this->comicRepository->getBywriterNameAndWhereNotInComicName($comic_name, $comic->writer_name);
         $top5Comics   = $this->comicRepository->getComicsByRanking();
-        $bottomComics = $this->comicRepository->getBlankModel()->take(30)->get();
+        $bottomComics = $this->comicRepository->getComicsByRandom();
 
         $comic->load('applications');
         $witersComics->load('applications');
@@ -69,16 +70,4 @@ class ComicController extends Controller
             ]
         );
     }
-
-    public function writer($writer_name)
-    {
-
-        $comics = $this->comicRepository->getBywriterName($writer_name);
-        return view('pages.comic.writer_show',
-            [
-                'comics' => $comics
-            ]
-        );
-    }
-
 }
