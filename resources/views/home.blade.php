@@ -3,7 +3,7 @@
 @section('content')
     <!-- comic_search -->
     <div class="{{ Config::get('classConstants.frame') }}">
-        @include('components.comic.searchForm', [])
+        @include('components.comic.searchForm', ['query' => null])
     </div>
     <!-- comic_list -->
     <div class="{{ Config::get('classConstants.frame') }}">
@@ -11,7 +11,7 @@
     </div>
     <!-- top5Comics -->
     <div class="{{ Config::get('classConstants.frame') }}">
-        @include('components.comic.ranking', ['isRanking' => true, 'title' => '人気ランキング', 'comics' => $top5Comics])
+        @include('components.comic.ranking', ['isRanking' => true, 'isWriters' => false, 'title' => '人気ランキング', 'comics' => $top5Comics])
     </div>
     <!-- bottomComics -->
     <div class="{{ Config::get('classConstants.frame') }}">

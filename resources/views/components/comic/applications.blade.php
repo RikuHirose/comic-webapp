@@ -1,6 +1,5 @@
 <div class="d-flex justify-content-between">
   <h3 class="h5 font-weight-bold mb-3">{{ $title }}</h3>
-  <a class="text-muted" href="/comics">もっと見る＞</a>
 </div>
 
 <ul class="list-untitled pl-0 mb-0">

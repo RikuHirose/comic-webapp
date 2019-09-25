@@ -18,9 +18,6 @@
       <h2 class="h5 py-1 mb-0 font-weight-bold">{{ $comic->comic_name }}</h2>
       <p class="py-1">
         @include('components.comic.star', ['comic' => $comic])
-        <span class="m-tag">
-        LINEマンガ
-        </span>
       </p>
       <p class="text-right mb-0 align-bottom justify-content-end">
         <a class="btn btn-light" href="">
@@ -80,12 +77,12 @@
 
 <!-- witersComics -->
 <div class="{{ Config::get('classConstants.frame') }}">
-    @include('components.comic.ranking', ['isRanking' => false, 'title' => $comic->writer_name.'の他の作品', 'comics' => $witersComics])
+    @include('components.comic.ranking', ['isRanking' => false, 'isWriters' => true, 'title' => $comic->writer_name.'の他の作品', 'comics' => $witersComics])
 </div>
 
 <!-- top5Comics -->
 <div class="{{ Config::get('classConstants.frame') }}">
-    @include('components.comic.ranking', ['isRanking' => true, 'title' => '人気ランキング', 'comics' => $top5Comics])
+    @include('components.comic.ranking', ['isRanking' => true, 'isWriters' => false, 'title' => '人気ランキング', 'comics' => $top5Comics])
 </div>
 <!-- bottomComics -->
 <div class="{{ Config::get('classConstants.frame') }}">

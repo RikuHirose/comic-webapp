@@ -14,7 +14,7 @@ Breadcrumbs::for('index', function ($trail) {
 // top > writer_name
 Breadcrumbs::for('writer', function ($trail, $comic) {
   $trail->parent('top_page');
-  $trail->push($comic->writer_name, route('comics.writer', $comic->writer_name));
+  $trail->push($comic->writer_name, route('comics.index', ['query' => $comic->writer_name]));
 });
 
 // top > writer_name > comic_name

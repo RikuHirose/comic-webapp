@@ -47,7 +47,11 @@ class HomeController extends Controller
     {
         $comics       = $this->comicRepository->getBlankModel()->take(6)->get();
         $top5Comics   = $this->comicRepository->getComicsByRanking();
-        $bottomComics = $this->comicRepository->getBlankModel()->take(30)->get();
+        $bottomComics = $this->comicRepository->getComicsByRandom();
+
+        $comics->load('applications');
+        $top5Comics->load('applications');
+        $bottomComics->load('applications');
 
         return view('home',[
             'comics'       => $comics,

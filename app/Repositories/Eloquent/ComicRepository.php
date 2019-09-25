@@ -110,4 +110,11 @@ class ComicRepository implements ComicRepositoryInterface
         return $comics;
     }
 
+    public function getComicsByRandom()
+    {
+        $comics = $this->comic
+        ->where('img_url', '!=', "")->inRandomOrder()->take(30)->get();
+
+        return $comics;
+    }
 }
