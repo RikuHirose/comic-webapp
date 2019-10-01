@@ -13,6 +13,12 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Abstract
+        $this->app->bind(
+            \App\Repositories\AbstractRepositoryInterface::class,
+            \App\Repositories\Eloquent\AbstractRepository::class
+        );
+
         // User
         $this->app->bind(
             \App\Repositories\UserRepositoryInterface::class,

@@ -35,6 +35,7 @@ class ComicController extends Controller
         $query  = $request->get('query');
         $comics = $this->comicService->getComicsBySearch($query);
 
+        dd($this->comicRepository->findById(1));
         return view('pages.comic.index',
             [
                 'comics'  => $comics,
