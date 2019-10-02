@@ -233,6 +233,7 @@ return [
         'Agent'        => Jenssegers\Agent\Facades\Agent::class,
         // Helper
         'CsvHelper' => \App\Facades\Helpers\CsvHelper::class,
+        'SeoHelper' => \App\Facades\Helpers\SeoHelper::class,
 
     ],
 
