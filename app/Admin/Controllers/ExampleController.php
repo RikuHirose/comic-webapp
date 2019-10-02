@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Admin\Controllers;
 
 use Encore\Admin\Controllers\AdminController;
@@ -35,7 +34,8 @@ class ExampleController extends AdminController
     /**
      * Make a show builder.
      *
-     * @param mixed   $id
+     * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)

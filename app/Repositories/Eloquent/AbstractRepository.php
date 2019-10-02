@@ -1,12 +1,8 @@
 <?php
-
 namespace App\Repositories\Eloquent;
 
-use Exception;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use App\Repositories\AbstractRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractRepository implements AbstractRepositoryInterface
 {
@@ -21,21 +17,21 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
 
     public function create($input)
     {
-      return $this->model->create($input);
+        return $this->model->create($input);
     }
 
     public function firstOrCreate($input)
     {
-      return $this->model->firstOrCreate($input);
+        return $this->model->firstOrCreate($input);
     }
 
     public function all()
     {
-      return $this->model->all();
+        return $this->model->all();
     }
 
     public function findById($id)
     {
-      return $this->model->where('id', $id)->first();
+        return $this->model->where('id', $id)->first();
     }
 }

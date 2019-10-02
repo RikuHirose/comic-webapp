@@ -1,27 +1,26 @@
 <?php
-
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\ComicRepositoryInterface;
-use App\Models\Comic;
 use App\Services\ComicServiceInterface;
-
+use App\Repositories\ComicRepositoryInterface;
+use App\Repositories\reviewRepositoryInterface;
 
 class ComicController extends Controller
 {
-    protected $comicRepository;
     protected $comicService;
+    protected $comicRepository;
+    protected $reviewRepository;
 
     public function __construct(
+        ComicServiceInterface $comicService,
         ComicRepositoryInterface $comicRepository,
-        ComicServiceInterface $comicService
-
-    )
-    {
+        ReviewRepositoryInterface $reviewRepository
+    ) {
+        $this->comicService      = $comicService;
         $this->comicRepository   = $comicRepository;
-        $this->comicService    = $comicService;
+        $this->reviewRepository  = $reviewRepository;
     }
 
     /**
@@ -35,11 +34,11 @@ class ComicController extends Controller
         $query  = $request->get('query');
         $comics = $this->comicService->getComicsBySearch($query);
 
-        dd($this->comicRepository->findById(1));
-        return view('pages.comic.index',
+        return view(
+            'pages.comic.index',
             [
                 'comics'  => $comics,
-                'query'   => is_null($query) ? null : $query
+                'query'   => is_null($query) ? null : $query,
             ]
         );
     }
@@ -47,7 +46,8 @@ class ComicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($comic_name)
@@ -57,17 +57,21 @@ class ComicController extends Controller
         $top5Comics   = $this->comicRepository->getComicsByRanking();
         $bottomComics = $this->comicRepository->getComicsByRandom();
 
+        $reviews      = $this->reviewRepository->getByComicId($comic->id);
+
         $comic->load('applications');
         $witersComics->load('applications');
         $top5Comics->load('applications');
         $bottomComics->load('applications');
 
-        return view('pages.comic.show',
+        return view(
+            'pages.comic.show',
             [
                 'comic'        => $comic,
                 'witersComics' => $witersComics,
                 'top5Comics'   => $top5Comics,
                 'bottomComics' => $bottomComics,
+                'reviews'      => $reviews,
             ]
         );
     }

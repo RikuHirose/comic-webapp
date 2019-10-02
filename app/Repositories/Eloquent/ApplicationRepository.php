@@ -1,18 +1,16 @@
 <?php
-
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Eloquent\AbstractRepository;
-use App\Repositories\ApplicationRepositoryInterface;
 use App\Models\Application;
+use App\Repositories\ApplicationRepositoryInterface;
 
 class ApplicationRepository extends AbstractRepository implements ApplicationRepositoryInterface
 {
     protected $application;
 
     /**
-    * @param object $application
-    */
+     * @param object $application
+     */
     public function __construct(Application $application)
     {
         $this->application = $application;
@@ -50,5 +48,4 @@ class ApplicationRepository extends AbstractRepository implements ApplicationRep
         ->where('name', $name)
         ->first();
     }
-
 }

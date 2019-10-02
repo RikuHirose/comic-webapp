@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -42,6 +41,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ApplicationRepositoryInterface::class,
             \App\Repositories\Eloquent\ApplicationRepository::class
         );
+
+        // Review
+        $this->app->bind(
+            \App\Repositories\ReviewRepositoryInterface::class,
+            \App\Repositories\Eloquent\ReviewRepository::class
+        );
     }
 
     /**
@@ -51,6 +56,5 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

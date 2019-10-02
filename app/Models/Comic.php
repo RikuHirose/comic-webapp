@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Comic extends Model
 {
-
     protected $table = 'comics';
 
     protected $fillable = [
@@ -26,14 +24,14 @@ class Comic extends Model
       'rating' => 'numeric',
     ];
 
-  // Relations
-  public function review(){
-    return $this->hasMany(\App\Models\Review::class, 'comic_id', 'id');
-  }
+    // Relations
+    public function review()
+    {
+        return $this->hasMany(\App\Models\Review::class, 'comic_id', 'id');
+    }
 
-  public function applications()
-  {
-    return $this->belongsToMany(\App\Models\Application::class, 'comic_applications', 'comic_id', 'application_id');
-  }
-
+    public function applications()
+    {
+        return $this->belongsToMany(\App\Models\Application::class, 'comic_applications', 'comic_id', 'application_id');
+    }
 }

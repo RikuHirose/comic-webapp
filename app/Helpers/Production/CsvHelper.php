@@ -5,63 +5,60 @@ use App\Helpers\CsvHelperInterface;
 
 class CsvHelper implements CsvHelperInterface
 {
-  /**
-  * csvに書き込んだdataをarrayで取り出す
-  **/
-  public function csvToArray($filePath)
-  {
-    $file = array();
-    foreach(glob($filePath) as $f){
-      if(is_file($f)){
-        $f = htmlspecialchars($f);
-        $file[] = $f;
-      }
+    /**
+     * csvに書き込んだdataをarrayで取り出す.
+     **/
+    public function csvToArray($filePath)
+    {
+        $file = [];
+        foreach (glob($filePath) as $f) {
+            if (is_file($f)) {
+                $f      = htmlspecialchars($f);
+                $file[] = $f;
+            }
+        }
+
+        $csv  = [];
+        $fp   = fopen($file[0], 'r');
+
+        while (($data = fgetcsv($fp, 0, ',')) !== false) {
+            $csv[] = $data;
+        }
+        fclose($fp);
+
+        return $csv;
     }
 
-    $csv  = array();
-    $fp   = fopen($file[0], "r");
-
-    while (($data = fgetcsv($fp, 0, ",")) !== FALSE) {
-      $csv[] = $data;
+    /**
+     * dataをcsvに書きこむ
+     **/
+    public function writeToCsv($filePath, $data)
+    {
+        $f = fopen($filePath, 'a');
+        // 正常にファイルを開くことができていれば、書き込みます。
+        if ($f) {
+            fputcsv($f, $data);
+        }
+        // ファイルを閉じます。
+        fclose($f);
     }
-    fclose($fp);
 
-    return $csv;
-  }
-
-  /**
-  * dataをcsvに書きこむ
-  **/
-  public function writeToCsv($filePath, $data)
-  {
-    $f = fopen($filePath, "a");
-    // 正常にファイルを開くことができていれば、書き込みます。
-    if ( $f ) {
-
-      fputcsv($f, $data);
+    public function writeToAppCsv($filePath, $links)
+    {
+        $f = fopen($filePath, 'a');
+        // 正常にファイルを開くことができていれば、書き込みます。
+        if ($f) {
+            fputcsv($f, $links);
+        }
+        // ファイルを閉じます。
+        fclose($f);
     }
-    // ファイルを閉じます。
-    fclose($f);
-  }
 
-  public function writeToAppCsv($filePath, $links)
-  {
-    $f = fopen($filePath, "a");
-    // 正常にファイルを開くことができていれば、書き込みます。
-    if ( $f ) {
-
-      fputcsv($f, $links);
+    /**
+     * 多次元配列をフラットな配列に.
+     **/
+    public function arrayFlatten($nestedArray)
+    {
+        return iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($nestedArray)), false);
     }
-    // ファイルを閉じます。
-    fclose($f);
-  }
-
-
-  /**
-  * 多次元配列をフラットな配列に
-  **/
-  public function arrayFlatten($nestedArray)
-  {
-    return iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($nestedArray)), false);
-  }
 }

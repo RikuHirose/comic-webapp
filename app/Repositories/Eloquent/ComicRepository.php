@@ -1,17 +1,16 @@
 <?php
-
 namespace App\Repositories\Eloquent;
-use App\Repositories\Eloquent\AbstractRepository;
-use App\Repositories\comicRepositoryInterface;
+
 use App\Models\Comic;
+use App\Repositories\comicRepositoryInterface;
 
 class ComicRepository extends AbstractRepository implements ComicRepositoryInterface
 {
     protected $model;
 
     /**
-    * @param object $model
-    */
+     * @param object $model
+     */
     public function __construct(Comic $model)
     {
         $this->model = $model;
@@ -55,7 +54,6 @@ class ComicRepository extends AbstractRepository implements ComicRepositoryInter
 
     public function findcomicId($model_name)
     {
-
         $model_id = $this->model
         ->where('comic_name', $model_name)
         ->orWhere('writer_name', $writer_name)
@@ -66,7 +64,8 @@ class ComicRepository extends AbstractRepository implements ComicRepositoryInter
         return $model_id;
     }
 
-    public function firstComic($model_name){
+    public function firstComic($model_name)
+    {
         $model = $this->model
         ->where('comic_name', $model_name)
         ->first();
@@ -114,7 +113,7 @@ class ComicRepository extends AbstractRepository implements ComicRepositoryInter
     public function getComicsByRandom()
     {
         $models = $this->model
-        ->where('img_url', '!=', "")->inRandomOrder()->take(30)->get();
+        ->where('img_url', '!=', '')->inRandomOrder()->take(30)->get();
 
         return $models;
     }

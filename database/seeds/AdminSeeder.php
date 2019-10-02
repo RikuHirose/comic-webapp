@@ -11,99 +11,97 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-
-      DB::table('admin_menu')->insert([
+        DB::table('admin_menu')->insert([
         [
             'id'        => 1,
             'parent_id' => 0,
             'title'     => 'Dashboard',
             'icon'      => 'fa-bar-chart',
-            'uri'       => '/'
+            'uri'       => '/',
         ],
         [
             'id'        => 2,
             'parent_id' => 0,
             'title'     => 'Admin',
             'icon'      => 'fa-tasks',
-            'uri'       => ''
+            'uri'       => '',
         ],
         [
             'id'        => 3,
             'parent_id' => 2,
             'title'     => 'Users',
             'icon'      => 'fa-users',
-            'uri'       => 'auth/users'
+            'uri'       => 'auth/users',
         ],
         [
             'id'        => 4,
             'parent_id' => 2,
             'title'     => 'Roles',
             'icon'      => 'fa-user',
-            'uri'       => 'auth/roles'
+            'uri'       => 'auth/roles',
         ],
         [
             'id'        => 5,
             'parent_id' => 2,
             'title'     => 'Permission',
             'icon'      => 'fa-ban',
-            'uri'       => 'auth/permissions'
+            'uri'       => 'auth/permissions',
         ],
         [
             'id'        => 6,
             'parent_id' => 2,
             'title'     => 'Menu',
             'icon'      => 'fa-bars',
-            'uri'       => 'auth/menu'
+            'uri'       => 'auth/menu',
         ],
         [
             'id'        => 7,
             'parent_id' => 2,
             'title'     => 'Operation log',
             'icon'      => 'fa-history',
-            'uri'       => 'auth/logs'
+            'uri'       => 'auth/logs',
         ],
       ]);
 
-      // DB::table('admin_menu')->insert([
-      //   [
-      //     'id'        => 8,
-      //     'parent_id' => 0,
-      //     'title'     => 'Companies',
-      //     'icon'      => 'fa-bars',
-      //     'uri'       => 'companies',
-      //   ],
-      //   [
-      //     'id'        => 9,
-      //     'parent_id' => 0,
-      //     'title'     => 'Jobs',
-      //     'icon'      => 'fa-bars',
-      //     'uri'       => 'jobs',
-      //   ],
-      //   [
-      //     'id'        => 10,
-      //     'parent_id' => 0,
-      //     'title'     => 'Meetings',
-      //     'icon'      => 'fa-bars',
-      //     'uri'       => 'meetings',
-      //   ],
-      //   [
-      //     'id'        => 11,
-      //     'parent_id' => 0,
-      //     'title'     => 'Mentors',
-      //     'icon'      => 'fa-bars',
-      //     'uri'       => 'mentors',
-      //   ],
-      //   [
-      //     'id'        => 12,
-      //     'parent_id' => 0,
-      //     'title'     => 'Users',
-      //     'icon'      => 'fa-bars',
-      //     'uri'       => 'users',
-      //   ]
-      // ]);
+        // DB::table('admin_menu')->insert([
+        //   [
+        //     'id'        => 8,
+        //     'parent_id' => 0,
+        //     'title'     => 'Companies',
+        //     'icon'      => 'fa-bars',
+        //     'uri'       => 'companies',
+        //   ],
+        //   [
+        //     'id'        => 9,
+        //     'parent_id' => 0,
+        //     'title'     => 'Jobs',
+        //     'icon'      => 'fa-bars',
+        //     'uri'       => 'jobs',
+        //   ],
+        //   [
+        //     'id'        => 10,
+        //     'parent_id' => 0,
+        //     'title'     => 'Meetings',
+        //     'icon'      => 'fa-bars',
+        //     'uri'       => 'meetings',
+        //   ],
+        //   [
+        //     'id'        => 11,
+        //     'parent_id' => 0,
+        //     'title'     => 'Mentors',
+        //     'icon'      => 'fa-bars',
+        //     'uri'       => 'mentors',
+        //   ],
+        //   [
+        //     'id'        => 12,
+        //     'parent_id' => 0,
+        //     'title'     => 'Users',
+        //     'icon'      => 'fa-bars',
+        //     'uri'       => 'users',
+        //   ]
+        // ]);
 
-
-      DB::table('admin_permissions')->insert([
+        DB::table('admin_permissions')->insert([
         [
             'name'        => 'All permission',
             'slug'        => '*',
@@ -140,41 +138,40 @@ class AdminSeeder extends Seeder
         ],
       ]);
 
-      DB::table('admin_users')->insert([
+        DB::table('admin_users')->insert([
         [
             'username' => 'admin',
             'password' => Hash::make('adminadmin'),
-            'name'     => 'Administrator'
-        ]
+            'name'     => 'Administrator',
+        ],
       ]);
 
-      DB::table('admin_roles')->insert([
+        DB::table('admin_roles')->insert([
         [
           'name'     => 'Administrator',
-          'slug' => 'administrator',
-        ]
+          'slug'     => 'administrator',
+        ],
       ]);
 
-      DB::table('admin_role_users')->insert([
+        DB::table('admin_role_users')->insert([
         [
           'role_id' => 1,
           'user_id' => 1,
-        ]
+        ],
       ]);
 
-      DB::table('admin_role_menu')->insert([
+        DB::table('admin_role_menu')->insert([
         [
           'role_id' => 1,
           'menu_id' => 2,
-        ]
+        ],
       ]);
 
-      DB::table('admin_role_permissions')->insert([
+        DB::table('admin_role_permissions')->insert([
         [
-          'role_id' => 1,
+          'role_id'       => 1,
           'permission_id' => 1,
-        ]
+        ],
       ]);
-
-  }
+    }
 }

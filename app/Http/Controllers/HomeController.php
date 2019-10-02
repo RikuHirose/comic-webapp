@@ -1,19 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\ComicRequest;
-
 use App\Repositories\ComicRepositoryInterface;
-use App\Models\Comic;
+
 use App\Services\ComicServiceInterface;
-
-
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
     protected $comicRepository;
     protected $comicService;
 
@@ -25,11 +19,9 @@ class HomeController extends Controller
     public function __construct(
         ComicRepositoryInterface $comicRepository,
         ComicServiceInterface $comicService
-    )
-    {
+    ) {
         $this->comicRepository   = $comicRepository;
-        $this->comicService    = $comicService;
-
+        $this->comicService      = $comicService;
     }
 
     /**
@@ -53,7 +45,7 @@ class HomeController extends Controller
         $top5Comics->load('applications');
         $bottomComics->load('applications');
 
-        return view('home',[
+        return view('home', [
             'comics'       => $comics,
             'top5Comics'   => $top5Comics,
             'bottomComics' => $bottomComics,
