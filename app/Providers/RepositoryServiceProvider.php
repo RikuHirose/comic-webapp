@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -13,6 +12,12 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Abstract
+        $this->app->bind(
+            \App\Repositories\AbstractRepositoryInterface::class,
+            \App\Repositories\Eloquent\AbstractRepository::class
+        );
+
         // User
         $this->app->bind(
             \App\Repositories\UserRepositoryInterface::class,
@@ -36,6 +41,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ApplicationRepositoryInterface::class,
             \App\Repositories\Eloquent\ApplicationRepository::class
         );
+
+        // Review
+        $this->app->bind(
+            \App\Repositories\ReviewRepositoryInterface::class,
+            \App\Repositories\Eloquent\ReviewRepository::class
+        );
     }
 
     /**
@@ -45,6 +56,5 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

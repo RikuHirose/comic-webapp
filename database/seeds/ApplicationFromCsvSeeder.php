@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Database\Seeder;
 
 class ApplicationFromCsvSeeder extends CSVSeeder
 {

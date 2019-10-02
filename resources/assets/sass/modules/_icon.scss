@@ -179,4 +179,12 @@
       font-weight: 600;
     }
   }
+
+  &-pen {
+    &::before {
+      font-family: $_fontawesome;
+      content: $_fa-pen;
+      font-weight: 600;
+    }
+  }
 }

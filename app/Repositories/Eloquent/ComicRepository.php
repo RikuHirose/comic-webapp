@@ -1,120 +1,120 @@
 <?php
-
 namespace App\Repositories\Eloquent;
-use App\Repositories\comicRepositoryInterface;
-use App\Models\Comic;
 
-class ComicRepository implements ComicRepositoryInterface
+use App\Models\Comic;
+use App\Repositories\comicRepositoryInterface;
+
+class ComicRepository extends AbstractRepository implements ComicRepositoryInterface
 {
-    protected $comic;
+    protected $model;
 
     /**
-    * @param object $comic
-    */
-    public function __construct(Comic $comic)
+     * @param object $model
+     */
+    public function __construct(Comic $model)
     {
-        $this->comic = $comic;
+        $this->model = $model;
     }
 
     public function getBlankModel()
     {
-        return new comic();
+        return new Comic();
     }
 
-    public function create($input)
-    {
-      $comic = $this->comic->create($input);
+    // public function create($input)
+    // {
+    //   $model = $this->model->create($input);
 
-      return $comic;
-    }
+    //   return $model;
+    // }
 
-    public function all()
-    {
-      $comics = $this->comic->all();
+    // public function all()
+    // {
+    //   $models = $this->model->all();
 
-      return $comics;
-    }
+    //   return $models;
+    // }
 
     public function findByName($name)
     {
-        return $this->comic
+        return $this->model
         ->where('comic_name', $name)
         ->first();
     }
 
     public function searchComics($input)
     {
-        $comics = $this->comic
+        $models = $this->model
         ->where('comic_name', 'like', "%{$input}%")
         ->orWhere('writer_name', 'like', "%{$input}%")
         ->paginate();
 
-        return $comics;
+        return $models;
     }
 
-    public function findcomicId($comic_name)
+    public function findcomicId($model_name)
     {
-
-        $comic_id = $this->comic
-        ->where('comic_name', $comic_name)
+        $model_id = $this->model
+        ->where('comic_name', $model_name)
         ->orWhere('writer_name', $writer_name)
-        // ->orWhere('name', 'like', "%{$comic_name}%")
+        // ->orWhere('name', 'like', "%{$model_name}%")
         ->pluck('id')
         ->find();
 
-        return $comic_id;
+        return $model_id;
     }
 
-    public function firstComic($comic_name){
-        $comic = $this->comic
-        ->where('comic_name', $comic_name)
+    public function firstComic($model_name)
+    {
+        $model = $this->model
+        ->where('comic_name', $model_name)
         ->first();
 
-        return $comic;
+        return $model;
     }
 
     public function getBywriterName($writer_name)
     {
-        $comic = $this->comic
+        $model = $this->model
         ->where('writer_name', $writer_name)
         ->get();
 
-        return $comic;
+        return $model;
     }
 
     public function getBywriterNameAndWhereNotInComicName($comic_name, $writer_name)
     {
-        $comic = $this->comic
+        $model = $this->model
         ->where('writer_name', $writer_name)
         ->whereNotIn('comic_name', [$comic_name])
         ->get();
 
-        return $comic;
+        return $model;
     }
 
     public function getPopularcomics()
     {
-        $comics = $this->comic
+        $models = $this->model
         ->take(10)
         ->get();
 
-        return $comics;
+        return $models;
     }
 
     public function getComicsByRanking()
     {
-        $comics = $this->comic
+        $models = $this->model
         ->take(5)
         ->get();
 
-        return $comics;
+        return $models;
     }
 
     public function getComicsByRandom()
     {
-        $comics = $this->comic
-        ->where('img_url', '!=', "")->inRandomOrder()->take(30)->get();
+        $models = $this->model
+        ->where('img_url', '!=', '')->inRandomOrder()->take(30)->get();
 
-        return $comics;
+        return $models;
     }
 }

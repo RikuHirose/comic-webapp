@@ -1,16 +1,16 @@
 <?php
-
 namespace App\Repositories\Eloquent;
-use App\Repositories\ComicApplicationRepositoryInterface;
+
 use App\Models\ComicApplication;
+use App\Repositories\ComicApplicationRepositoryInterface;
 
 class ComicApplicationRepository implements ComicApplicationRepositoryInterface
 {
     protected $comicApplication;
 
     /**
-    * @param object $comicApplication
-    */
+     * @param object $comicApplication
+     */
     public function __construct(ComicApplication $comicApplication)
     {
         $this->comicApplication = $comicApplication;
@@ -23,25 +23,22 @@ class ComicApplicationRepository implements ComicApplicationRepositoryInterface
 
     public function create($input)
     {
-      $comicApplication = $this->comicApplication->create($input);
+        $comicApplication = $this->comicApplication->create($input);
 
-      return $comicApplication;
+        return $comicApplication;
     }
 
     public function firstOrCreate($input)
     {
-      $comicApplication = $this->comicApplication->firstOrCreate($input);
+        $comicApplication = $this->comicApplication->firstOrCreate($input);
 
-      return $comicApplication;
+        return $comicApplication;
     }
 
     public function all()
     {
-      $comicApplications = $this->comicApplication->all();
+        $comicApplications = $this->comicApplication->all();
 
-      return $comicApplications;
+        return $comicApplications;
     }
-
-
-
 }

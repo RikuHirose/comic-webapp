@@ -1,16 +1,16 @@
 <?php
-
 namespace App\Repositories\Eloquent;
-use App\Repositories\ApplicationRepositoryInterface;
-use App\Models\Application;
 
-class ApplicationRepository implements ApplicationRepositoryInterface
+use App\Models\Application;
+use App\Repositories\ApplicationRepositoryInterface;
+
+class ApplicationRepository extends AbstractRepository implements ApplicationRepositoryInterface
 {
     protected $application;
 
     /**
-    * @param object $application
-    */
+     * @param object $application
+     */
     public function __construct(Application $application)
     {
         $this->application = $application;
@@ -21,26 +21,26 @@ class ApplicationRepository implements ApplicationRepositoryInterface
         return new Application();
     }
 
-    public function create($input)
-    {
-      $application = $this->application->create($input);
+    // public function create($input)
+    // {
+    //   $application = $this->application->create($input);
 
-      return $application;
-    }
+    //   return $application;
+    // }
 
-    public function firstOrCreate($input)
-    {
-      $application = $this->application->firstOrCreate($input);
+    // public function firstOrCreate($input)
+    // {
+    //   $application = $this->application->firstOrCreate($input);
 
-      return $application;
-    }
+    //   return $application;
+    // }
 
-    public function all()
-    {
-      $applications = $this->application->all();
+    // public function all()
+    // {
+    //   $applications = $this->application->all();
 
-      return $applications;
-    }
+    //   return $applications;
+    // }
 
     public function findByName($name)
     {
@@ -48,5 +48,4 @@ class ApplicationRepository implements ApplicationRepositoryInterface
         ->where('name', $name)
         ->first();
     }
-
 }

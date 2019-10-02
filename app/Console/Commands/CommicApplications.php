@@ -1,16 +1,14 @@
 <?php
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-
-use App\Repositories\ComicRepositoryInterface;
 use App\Repositories\ApplicationRepositoryInterface;
+
 use App\Repositories\ComicApplicationRepositoryInterface;
+use App\Repositories\ComicRepositoryInterface;
+use Illuminate\Console\Command;
 
 class CommicApplications extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -31,11 +29,10 @@ class CommicApplications extends Command
      * @return void
      */
     public function __construct(
-        ComicRepositoryInterface             $comicRepository,
-        ApplicationRepositoryInterface       $applicationRepository,
-        ComicApplicationRepositoryInterface  $comicApplicationRepository
-    )
-    {
+        ComicRepositoryInterface $comicRepository,
+        ApplicationRepositoryInterface $applicationRepository,
+        ComicApplicationRepositoryInterface $comicApplicationRepository
+    ) {
         parent::__construct();
         $this->comicRepository             = $comicRepository;
         $this->applicationRepository       = $applicationRepository;
@@ -50,9 +47,7 @@ class CommicApplications extends Command
     public function handle()
     {
         self::sortCsv();
-
     }
-
 
     public function sortCsv()
     {
@@ -61,7 +56,7 @@ class CommicApplications extends Command
         $comics       = $this->comicRepository->all();
         $applications = $this->applicationRepository->all();
 
-        $csvComicApplications = \CsvHelper::csvToArray("/Users/rikuparkour1996/www/comic-webapp/database/seeds/Data/comicApplications.csv");
+        $csvComicApplications = \CsvHelper::csvToArray('/Users/rikuparkour1996/www/comic-webapp/database/seeds/Data/comicApplications.csv');
 
         foreach ($csvComicApplications as $key => $csvComicApplication) {
             $comicName       = $csvComicApplication[0];
@@ -70,8 +65,8 @@ class CommicApplications extends Command
             $comic       = $this->comicRepository->findByName($comicName);
             $application = $this->applicationRepository->findByName($applicationName);
 
-            if(!is_null($comic) && !is_null($application)) {
-                echo $comic->comic_name."と".$application->name."のcommicApplicationを作成中...";
+            if (!is_null($comic) && !is_null($application)) {
+                echo $comic->comic_name.'と'.$application->name.'のcommicApplicationを作成中...';
 
                 $this->comicApplicationRepository->firstOrCreate([
                     'comic_id'       => $comic->id,

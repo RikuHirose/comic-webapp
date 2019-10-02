@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-
     protected $table = 'reviews';
 
     protected $fillable = [
@@ -15,11 +13,9 @@ class Review extends Model
         'description',
     ];
 
-
-  // Relations
-  public function comic()
-  {
-    $this->belongsTo(\App\Models\Comic::class, 'comic_id', 'id');
-  }
-
+    // Relations
+    public function comic()
+    {
+        $this->belongsTo(\App\Models\Comic::class, 'comic_id', 'id');
+    }
 }

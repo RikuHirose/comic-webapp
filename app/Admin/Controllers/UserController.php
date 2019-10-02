@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Admin\Controllers;
 
 use App\Models\User;
@@ -42,6 +41,7 @@ class UserController extends AdminController
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)

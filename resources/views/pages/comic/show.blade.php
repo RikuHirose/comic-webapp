@@ -75,9 +75,26 @@
   </table>
  </div>
 
+ <!-- comicReviewss -->
+<div class="{{ Config::get('classConstants.frame') }}">
+    @include('components.review.index', [
+    'title'   => $comic->comic_name.'のレビュー',
+    'comic'   => $comic,
+    'reviews' => $reviews,
+    ])
+
+    <div class="text-center">
+      <a href="" class="m-btn">もっと見る</a>
+    </div>
+</div>
+
 <!-- witersComics -->
 <div class="{{ Config::get('classConstants.frame') }}">
-    @include('components.comic.ranking', ['isRanking' => false, 'isWriters' => true, 'title' => $comic->writer_name.'の他の作品', 'comics' => $witersComics])
+    @include('components.comic.ranking', [
+    'isRanking' => false,
+    'isWriters' => true,
+    'title'     => $comic->writer_name.'の他の作品',
+    'comics'    => $witersComics])
 </div>
 
 <!-- top5Comics -->
@@ -87,6 +104,8 @@
 <!-- bottomComics -->
 <div class="{{ Config::get('classConstants.frame') }}">
     @include('components.comic.list', ['title' => 'あれもこれも！待てば無料！', 'comics' => $bottomComics])
-    <a href="{{ route('comics.index') }}" class="m-btn">もっと見る</a>
+    <div class="text-center">
+      <a href="{{ route('comics.index') }}" class="m-btn">もっと見る</a>
+    </div>
 </div>
 @endsection

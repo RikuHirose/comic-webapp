@@ -13,15 +13,15 @@ class Comic_ApplicationsTableSeeder extends Seeder
     {
         DB::table('comic_applications')->insert([
             [
-                'comic_id' => '1',
+                'comic_id'        => '1',
                 'application_id'  => '1',
             ],
             [
-                'comic_id' => '2',
+                'comic_id'        => '2',
                 'application_id'  => '1',
             ],
             [
-                'comic_id' => '3',
+                'comic_id'        => '3',
                 'application_id'  => '2',
             ],
           ]);
