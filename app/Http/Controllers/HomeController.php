@@ -45,6 +45,8 @@ class HomeController extends Controller
         $top5Comics->load('applications');
         $bottomComics->load('applications');
 
+        \SeoHelper::setIndexSeo();
+
         return view('home', [
             'comics'       => $comics,
             'top5Comics'   => $top5Comics,

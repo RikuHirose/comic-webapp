@@ -2,13 +2,9 @@
 namespace App\Helpers\Production;
 
 use App\Helpers\SeoHelperInterface;
-use SEOMeta;
-use OpenGraph;
-use Twitter;
 
 class SeoHelper implements SeoHelperInterface
 {
-
     public function __construct(
     ) {
     }
@@ -24,31 +20,33 @@ class SeoHelper implements SeoHelperInterface
         return $this->setSeoText($title, $keyWords, $description);
     }
 
-    // restaurants
-    public function setRestaurantsIndexSeo()
+    // Comics
+    public function setComicsIndexSeo()
     {
-        $title       = trans('seo.restaurants.index.title');
-
-        $description = trans('seo.restaurants.index.description');
-
-        $keyWords = trans('seo.index.keywords');
+        $title       = trans('seo.comics.index.title');
+        $description = trans('seo.comics.index.description');
+        $keyWords    = trans('seo.index.keywords');
 
         return $this->setSeoText($title, $keyWords, $description);
     }
 
-    public function setRestaurantsShowSeo($model)
+    public function setComicsShowSeo($model)
     {
         $appName      = config('app.name');
-        $title        = $model->name. '  |  ' .trans('seo.index.title');
-        $description  = $model->description;
-        $keyWords     = $model->keywords;
+        $title        = trans('seo.comics.show.title', [
+            'comicName' => $model->comic_name
+        ]);
+        $description  = trans('seo.comics.show.description', [
+            'comicName' => $model->comic_name,
+            'count'     => count($model->applications)
+        ]);
+        $keyWords     = $model->comic_name.','.$model->writer_name.','.trans('seo.index.keywords');
 
-        $imageTwitter  = \ImageHelper::getFirstImageForRestaurant($model);
-        $imageFacebook = \ImageHelper::getFirstImageForRestaurant($model);
+        $imageTwitter  = $model->img_url;
+        $imageFacebook = $model->img_url;
 
         return $this->setSeo($title, $keyWords, $description, $imageFacebook, $imageTwitter);
     }
-
 
     public function setDefaultSeo()
     {

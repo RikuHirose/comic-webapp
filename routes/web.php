@@ -20,13 +20,11 @@
 Route::get('/', 'HomeController@index')->name('top_page');
 
 Route::group(['namespace' => 'User'], function () {
-  Route::group(['prefix' => 'comics', 'as' => 'comics.'], function () {
-    Route::get('/', 'ComicController@index')->name('index');
+    Route::group(['prefix' => 'comics', 'as' => 'comics.'], function () {
+        Route::get('/', 'ComicController@index')->name('index');
 
-    Route::get('/{comic_name}', 'ComicController@show')->name('show');
-    Route::get('/{comic_name}/review/create', 'ReviewController@create')->name('show.review.create');
-    Route::post('/{comic_name}/review/store', 'ReviewController@store')->name('show.review.store');
-  });
+        Route::get('/{comic_name}', 'ComicController@show')->name('show');
+        Route::get('/{comic_name}/review/create', 'ReviewController@create')->name('show.review.create');
+        Route::post('/{comic_name}/review/store', 'ReviewController@store')->name('show.review.store');
+    });
 });
-
-
