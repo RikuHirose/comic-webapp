@@ -13,9 +13,14 @@ class HelperServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(
-        \App\Helpers\CsvHelperInterface::class,
-        \App\Helpers\Production\CsvHelper::class
-    );
+            \App\Helpers\CsvHelperInterface::class,
+            \App\Helpers\Production\CsvHelper::class
+        );
+
+        $this->app->singleton(
+            \App\Helpers\SeoHelperInterface::class,
+            \App\Helpers\Production\SeoHelper::class
+        );
     }
 
     /**

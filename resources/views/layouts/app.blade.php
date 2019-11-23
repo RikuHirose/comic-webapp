@@ -9,6 +9,20 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {!! SEOMeta::generate(true) !!}
+    {!! OpenGraph::generate(true) !!}
+    {!! Twitter::generate(true) !!}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ファビコン -->
+    <link rel="icon" href="{{ asset('/images/favicon.ico') }}">
+
+    <!-- スマホ用アイコン -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
+
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

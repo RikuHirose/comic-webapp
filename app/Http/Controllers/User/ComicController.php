@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\ComicServiceInterface;
 use App\Repositories\ComicRepositoryInterface;
 use App\Repositories\reviewRepositoryInterface;
+use App\Services\ComicServiceInterface;
+use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
@@ -33,6 +33,8 @@ class ComicController extends Controller
         \Log::info('Display a listing of the comic');
         $query  = $request->get('query');
         $comics = $this->comicService->getComicsBySearch($query);
+
+        \SeoHelper::setIndexSeo();
 
         return view(
             'pages.comic.index',
@@ -63,6 +65,8 @@ class ComicController extends Controller
         $witersComics->load('applications');
         $top5Comics->load('applications');
         $bottomComics->load('applications');
+
+        \SeoHelper::setComicsShowSeo($comic);
 
         return view(
             'pages.comic.show',

@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\ComicServiceInterface;
 use App\Repositories\ComicRepositoryInterface;
 use App\Repositories\reviewRepositoryInterface;
+use App\Services\ComicServiceInterface;
+use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
@@ -37,7 +37,7 @@ class ReviewController extends Controller
 
     public function store($comic_name, Request $request)
     {
-        $comic = $this->comicRepository->firstComic($comic_name);
+        $comic  = $this->comicRepository->firstComic($comic_name);
         $input  = $request->only($this->reviewRepository->getBlankModel()->getFillable());
 
         if (!isset($input['comic_id'])) {

@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Jenssegers\Agent\AgentServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,7 @@ return [
         'Agent'        => Jenssegers\Agent\Facades\Agent::class,
         // Helper
         'CsvHelper' => \App\Facades\Helpers\CsvHelper::class,
+        'SeoHelper' => \App\Facades\Helpers\SeoHelper::class,
 
     ],
 
